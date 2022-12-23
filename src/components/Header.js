@@ -1,32 +1,31 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import themeContext from "./themeContext";
+import { useSelector } from "react-redux";
+import store from "../store";
 const Header = () => {
   const { theme, settheme } = useContext(themeContext);
+  const user = useSelector((store) => {
+    store.user;
+  });
+  console.log(user, "user");
   return (
     <header
       className={`header ${theme == "light" ? "themelight" : "themedark"}`}
     >
-      {/* <NavLink to="/">Home</NavLink> &nbsp; */}
       <div>
-        {/* {theme} */}
         <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About Us</NavLink>
-        {/* <userContext.Consumer>
-        {(email) => {
-          return <span>{email}</span>;
-        }}
-      </userContext.Consumer> */}
       </div>
       <div>
-        <label class="switch">
+        <label className="switch">
           <input
             type="checkbox"
             onChange={() => {
               settheme(theme == "light" ? "dark" : "light");
             }}
           />
-          <span class="slider round"></span>
+          <span className="slider round"></span>
         </label>
         <span className="text-white">{theme}</span>
       </div>
