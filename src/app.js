@@ -8,7 +8,8 @@ import { Provider } from "react-redux";
 import Error from "./components/Error";
 import Loader from "./components/loader";
 import themeContext from "./components/themeContext";
-import store from "./store";
+import store from "./store/index";
+import Login from "./components/Login";
 
 const AboutUs = lazy(() => import("./components/About"));
 const Search = lazy(() => import("./components/Search"));
@@ -38,9 +39,9 @@ const appRouter = createBrowserRouter([
     element: <Main />,
     errorElement: <Error />,
     children: [
-      // { path: "", element: <Search /> },
+      { path: "", element: <Login /> },
       {
-        path: "",
+        path: "Search",
         element: (
           <Suspense fallback={<Loader />}>
             <Search />

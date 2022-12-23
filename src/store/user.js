@@ -5,11 +5,14 @@ const user = createSlice({
     userDetail: {},
   },
   reducers: {
-    addUser: (store) => {
-      store.userDetail.name = "Prakash";
-      store.userDetail.email = "Prakashkumar@gmail.com";
+    addUser: (state, action) => {
+      state.userDetail.username = action.payload.username;
+      state.userDetail.password = action.payload.password;
+    },
+    logout: (state) => {
+      state.userDetail = {};
     },
   },
 });
-export const { addUser } = user.actions;
+export const { addUser, logout } = user.actions;
 export default user.reducer;

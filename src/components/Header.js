@@ -1,14 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import themeContext from "./themeContext";
 import { useSelector } from "react-redux";
 import store from "../store";
+import { useDispatch } from "react-redux";
+import { logout } from "../store/user";
 const Header = () => {
   const { theme, settheme } = useContext(themeContext);
-  const user = useSelector((store) => {
-    store.user;
+  const { userDetail } = useSelector((store) => {
+    return store.user;
   });
-  console.log(user, "user");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const Logout = () => {
+    dispatch(logout());
+    navigate("");
+  };
   return (
     <header
       className={`header ${theme == "light" ? "themelight" : "themedark"}`}
@@ -17,17 +24,26 @@ const Header = () => {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About Us</NavLink>
       </div>
-      <div>
-        <label className="switch">
-          <input
-            type="checkbox"
-            onChange={() => {
-              settheme(theme == "light" ? "dark" : "light");
-            }}
-          />
-          <span className="slider round"></span>
-        </label>
-        <span className="text-white">{theme}</span>
+      <div className="flex">
+        {Object.keys(userDetail).length > 0 && (
+          <div className="header-userdetail">
+            Welcome, {userDetail.username},
+            <button onClick={Logout}>Logout</button>
+          </div>
+        )}
+
+        <div>
+          <label className="switch">
+            <input
+              type="checkbox"
+              onChange={() => {
+                settheme(theme == "light" ? "dark" : "light");
+              }}
+            />
+            <span className="slider round"></span>
+          </label>
+          <span className="text-white">{theme}</span>
+        </div>
       </div>
     </header>
   );
