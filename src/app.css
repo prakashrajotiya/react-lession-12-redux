@@ -208,12 +208,18 @@ input:checked + .slider:before {
   color: #fff;
 }
 .loginform {
-  max-width: 500px;
+  max-width: 300px;
   margin: 0 auto;
+  margin-top: 30px;
+  text-align: center;
 }
 
 .loginform > input {
   margin-bottom: 15px;
+  width: 100%;
+}
+.loginform button {
+  width: 100%;
 }
 .flex {
   display: flex;
@@ -228,5 +234,9 @@ input:checked + .slider:before {
   margin: 0 15px;
   min-height: auto;
   background-color: red;
+
   /* color: red !important; */
+}
+.ml-auto {
+  margin-left: auto;
 }

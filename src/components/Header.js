@@ -20,11 +20,16 @@ const Header = () => {
     <header
       className={`header ${theme == "light" ? "themelight" : "themedark"}`}
     >
-      <div>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/about">About Us</NavLink>
-      </div>
-      <div className="flex">
+      {Object.keys(userDetail).length > 0 && (
+        <div>
+          {/* <NavLink to="/">Home</NavLink> */}
+          {Object.keys(userDetail).length > 0 && (
+            <NavLink to="/search">Search</NavLink>
+          )}
+          <NavLink to="/about">About Us</NavLink>
+        </div>
+      )}
+      <div className="flex ml-auto">
         {Object.keys(userDetail).length > 0 && (
           <div className="header-userdetail">
             Welcome, {userDetail.username},
@@ -32,7 +37,7 @@ const Header = () => {
           </div>
         )}
 
-        <div>
+        <div className="">
           <label className="switch">
             <input
               type="checkbox"
